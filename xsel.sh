@@ -29,8 +29,10 @@ esac
 sed '1!G;h;$!d' | while read line
 do
   echo -- $line | cut -d^ -f1
+  entry=$(echo $line | cut -d^ -f1)
   output=$(echo $line | cut -d^ -f2)
-  test -n "$cap" && echo $output | tr -d '\n' | eval $cap || echo $output
-  echo '  Press ENTER to continue...'
-  read enter </dev/tty
+  test -n "$cap" && echo $output | tr -d '\n' | eval $cap || echo $output 
+  echo "$output" > $entry.txt
+#  echo '  Press ENTER to continue...'
+#  read enter </dev/tty
 done
