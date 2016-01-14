@@ -36,7 +36,7 @@ loopfile=$(mktemp /tmp/despf-loop-XXXXXXX)
 echo random-non-match-tdaoeinthaonetuhanotehu > $loopfile
 trap "cleanup $loopfile; exit 1;" INT QUIT
 
-domain=${1:-'orig.spf-tools.ml'}
+domain=${1:-'spfzero.stackla.net'}
 
 despfit $domain $loopfile | grep . || { cleanup $loopfile; exit 1; }
 cleanup $loopfile
