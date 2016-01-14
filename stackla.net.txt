@@ -1,1 +1,0 @@
-"v=spf1 include:spftest1.stackla.net ~all"
