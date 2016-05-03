@@ -20,6 +20,8 @@
 # Usage: isincidrange.sh <ip> <ip> <mask>
 # E.g.: isincidrange.sh 192.168.0.1 192.168.0.5 24
 
+test -n "$DEBUG" && set -x
+
 ip2int() {
   local a b c d
   echo $1 | while IFS="." read a b c d ; do
@@ -52,7 +54,7 @@ c=$3
 
 nm=$c
 if [ "x$nm" = "x32" ] ; then
-  test $a -eq $b
+  test "$a" = "$b"
 else
   resulta="$(network $a/$nm)"
   resultb="$(network $b/$nm)"
