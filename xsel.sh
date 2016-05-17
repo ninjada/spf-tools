@@ -17,6 +17,9 @@
 #
 ##############################################################################
 
+# Get current path
+current_path="$( cd "$( dirname "$0" )" && pwd )"
+
 case $(uname -s) in
   Darwin)
     cap="pbcopy"
@@ -32,7 +35,7 @@ do
   entry=$(echo $line | cut -d^ -f1)
   output=$(echo $line | cut -d^ -f2)
   test -n "$cap" && echo $output | tr -d '\n' | eval $cap || echo $output 
-  echo "$output" > spf-records/$entry
+  echo "$output" > $current_path/spf-records/$entry
 #  echo '  Press ENTER to continue...'
 #  read enter </dev/tty
 done
