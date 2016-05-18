@@ -14,7 +14,7 @@ DATE=$(date +%d-%m-%Y)
 COMMENT="SPF update - $DATE"
 TTL="60"
 TYPE="TXT"
-SPFDIR="spf-records"
+SPFDIR="$current_path/spf-records"
 FILES="$(ls $SPFDIR)"
 ZONEID="Z3LWGOH3KT4VO5"
 
@@ -47,6 +47,6 @@ cat > $JSONFILE << EOF
 }
 EOF
 
-#aws route53 change-resource-record-sets --hosted-zone-id "$ZONEID" --change-batch file://$JSONFILE
+aws route53 change-resource-record-sets --hosted-zone-id "$ZONEID" --change-batch file://$JSONFILE
 
 done
