@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/bin/bash -ex
 
 # Connect to master SPF record and run spf-tools to convert structure into direct ip addresses and split up as per 240char limit for SPF records
 # Will output the required records into $SPFDIR
@@ -6,7 +6,7 @@
 # Get current path
 current_path="$( cd "$( dirname "$0" )" && pwd )"
 
-$current_path/despf.sh spfzero.stackla.net | $current_path/normalize.sh | $current_path/simplify.sh \ | $current_path/mkblocks.sh stackla.net spf | $current_path/xsel.sh
+$current_path/despf.sh spfzero.stackla.com | $current_path/normalize.sh | $current_path/simplify.sh \ | $current_path/mkblocks.sh stackla.com spf | $current_path/xsel-com.sh
 
 # Take SPF records and convert to valid JSON format for update via AWS Route53
 
@@ -14,9 +14,9 @@ DATE=$(date +%d-%m-%Y)
 COMMENT="SPF update - $DATE"
 TTL="60"
 TYPE="TXT"
-SPFDIR="$current_path/spf-records"
+SPFDIR="$current_path/spf-records-com"
 FILES="$(ls $SPFDIR)"
-ZONEID="Z3LWGOH3KT4VO5"
+ZONEID="ZN6LSYIS1M13G"
 
 for f in $FILES
 
