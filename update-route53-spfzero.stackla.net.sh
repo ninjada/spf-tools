@@ -1,10 +1,12 @@
 #!/bin/bash -ex
 
-# Connect to master SPF record and run spf-tools to convert structure into direct ip addresses and split up as per 240char limit for SPF records
-# Will output the required records into $SPFDIR
+echo $(date)
 
 # Get current path
 current_path="$( cd "$( dirname "$0" )" && pwd )"
+
+# Connect to master SPF record and run spf-tools to convert structure into direct ip addresses and split up as per 240char limit for SPF records
+# Will output the required records into $SPFDIR
 
 $current_path/despf.sh spfzero.stackla.net | $current_path/normalize.sh | $current_path/simplify.sh \ | $current_path/mkblocks.sh stackla.net spf | $current_path/xsel-net.sh
 
